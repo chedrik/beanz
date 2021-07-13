@@ -21,6 +21,8 @@ class Deck {
             case 7:
                 cardTypes = ["red", "black-eyed", "soy", "green", "stink", "chili", "blue", "wax", "coffee"];
                 break;
+            default:
+                throw new Error('Number of players is not in 2 <= N <= 7');
         }
         return cardTypes;
     };
