@@ -54,7 +54,7 @@ class Deck {
 
     draw() {
         if (this.cards.length == 0) {
-            // TODO: DO SOMETHING
+            return null;
         } else {
             return this.cards.shift();
         }

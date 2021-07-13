@@ -62,12 +62,35 @@ describe('Deck', function () {
             const deck2 = new Deck(3);
             assert.notEqual(deck1.cards, deck2.cards);  // technically could be flaky in very unlikely scenario
         });
-        
+
         it('Reshuffling', function () {
             const deck = new Deck(3);
             deck.cards = []; // reset deck
             deck.reshuffle(['card1', 'card2', 'card3']);
             assert.equal(3, deck.count());
+        });
+    });
+
+    describe('Draw', function () {
+        it('Card should be drawn from the top of the deck', function () {
+            const deck = new Deck(3);
+            const card = deck.cards[0];
+            const drawnCard = deck.draw();
+            assert.equal(card, drawnCard);
+        });
+
+        it('Card should be taken from the deck on draw', function () {
+            const deck = new Deck(3);
+            const count = deck.count();
+            deck.draw();
+            assert.equal(count - 1, deck.count());
+        });
+
+        it('Cannot draw if the deck is empty', function () {
+            const deck = new Deck(3);
+            deck.cards = [];  // reset deck
+            const card = deck.draw();
+            assert.equal(card, null);
         });
     });
 });
