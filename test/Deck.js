@@ -86,11 +86,23 @@ describe('Deck', function () {
             assert.equal(count - 1, deck.count);
         });
 
-        it('Cannot draw if the deck is empty', function () {
+        it('Cannot draw if the deck is empty and no discard pile', function () {
             const deck = new Deck(3);
             deck.cards = [];  // reset deck
-            const card = deck._draw();
-            assert.equal(card, null);
+            assert.throws(
+                () => {
+                    deck._draw()
+                },
+                /No more cards to draw!/
+            );
+        });
+
+        it('Reshuffle if deck is empty', function () {
+            const deck = new Deck(3);
+            deck.cards = [];  // reset deck
+            deck.discardPile = ["red", "red", "red", "red"];
+            deck._draw();
+            assert.equal(3, deck.count);
         });
 
         it('Draw multiple cards', function () {

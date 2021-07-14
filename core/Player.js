@@ -6,7 +6,7 @@ class Player {
         this.coins = 0;
         this.hand = [];
         this.fields = [[], [], []]
-    }
+    };
 
     get numCards() {
         return this.hand.length;
@@ -34,7 +34,7 @@ class Player {
             if (opt <= num_cards) {
                 this.coins += coin_map[opt];
                 discard_pile = this.fields[fieldId].splice(0, opt);
-                //TODO: add cards to discard pile
+                this.deck.discard_pile.push(...discard_pile);
                 break
             }
         }
@@ -44,10 +44,6 @@ class Player {
     draw(deck) {
         const new_cards = deck.draw();
         this.hand.push(...new_cards);
-        if (new_cards.includes(null)) {
-            // TODO: END GAME
-            console.log('TODO')
-        }
     };
 };
 

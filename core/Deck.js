@@ -1,9 +1,13 @@
+const { GameOver } = require('./exceptions');
+
 class Deck {
     constructor(numPlayers) {
         this.numPlayers = numPlayers;
         this.createDeck();
         this.numShuffles = 0;
-    }
+        this.maxShuffles = numPlayers > 2 ? 2 : 0;
+        this.discardPile = [];
+    };
 
     determineCardTypes() {
         let cardTypes = [];
@@ -68,11 +72,20 @@ class Deck {
         } else {
             return [this._draw(), this._draw(), this._draw()];
         }
-    }
+    };
+
+    deal() {  // same as draw, but calibrated for initial deal
+        return [this._draw(), this._draw(), this._draw(), this._draw(), this._draw()];
+    };
 
     _draw() {
         if (this.cards.length == 0) {
-            return null;
+            if (this.hasShufflesRemaining) {
+                this.reshuffle(this.discardPile);
+                return this._draw();
+            } else {
+                throw new GameOver('No more cards to draw!');
+            }
         } else {
             return this.cards.shift();
         }
@@ -80,6 +93,10 @@ class Deck {
 
     get count() {
         return this.cards.length;
+    };
+
+    get hasShufflesRemaining() {
+        return this.maxShuffles - this.numShuffles;
     };
 
     static getCoinMap(card) {
@@ -188,7 +205,3 @@ const cardMeta = {
 };
 
 module.exports = Deck;
-
-const d = new Deck(3);
-let b = Deck.getCoinMap('coffee');
-console.log('hi')
