@@ -1,8 +1,7 @@
 function GameOver(message) {
-    const error = new Error(message);
-    return error;
-}
+    this.message = message;
+};
 
-GameOver.prototype = Object.create(Error.prototype);
+GameOver.prototype = new Error();
 
 module.exports = { GameOver };
