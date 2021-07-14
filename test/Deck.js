@@ -75,22 +75,31 @@ describe('Deck', function () {
         it('Card should be drawn from the top of the deck', function () {
             const deck = new Deck(3);
             const card = deck.cards[0];
-            const drawnCard = deck.draw();
+            const drawnCard = deck._draw();
             assert.equal(card, drawnCard);
         });
 
         it('Card should be taken from the deck on draw', function () {
             const deck = new Deck(3);
             const count = deck.count();
-            deck.draw();
+            deck._draw();
             assert.equal(count - 1, deck.count());
         });
 
         it('Cannot draw if the deck is empty', function () {
             const deck = new Deck(3);
             deck.cards = [];  // reset deck
-            const card = deck.draw();
+            const card = deck._draw();
             assert.equal(card, null);
+        });
+
+        it('Draw multiple cards', function () {
+            const deck = new Deck(3);
+            const cards = deck.draw();
+            assert.equal(cards.length, 3);
+            const deck2 = new Deck(2);
+            const cards2 = deck2.draw();
+            assert.equal(cards2.length, 2);
         });
     });
 });

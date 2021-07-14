@@ -2,6 +2,7 @@ class Deck {
     constructor(numPlayers) {
         this.numPlayers = numPlayers;
         this.createDeck();
+        this.numShuffles = 0;
     }
 
     determineCardTypes() {
@@ -50,9 +51,26 @@ class Deck {
     reshuffle(newCards) {
         this.cards.push(...newCards);
         this.shuffle();
+        this.numShuffles += 1;
     };
 
     draw() {
+        if (this.numPlayers >= 3) {
+            return [this._draw(), this._draw(), this._draw()];
+        } else {
+            return [this._draw(), this._draw()];
+        }
+    };
+
+    turn_over() {  // same as draw, but calibrated for game
+        if (this.numPlayers >= 3) {
+            return [this._draw(), this._draw()];
+        } else {
+            return [this._draw(), this._draw(), this._draw()];
+        }
+    }
+
+    _draw() {
         if (this.cards.length == 0) {
             return null;
         } else {
