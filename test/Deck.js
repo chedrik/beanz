@@ -5,39 +5,39 @@ describe('Deck', function () {
     describe('Creation', function () {
         it('Deck should be able to be initialized with non-zero cards', function () {
             const deck = new Deck(3);
-            assert.notEqual(deck.count(), 0);
+            assert.notEqual(deck.count, 0);
         });
     });
 
     describe('Different decks by # of players', function () {
         it('Deck initialization with 2 players', function () {
             const deck = new Deck(2);
-            assert.equal(deck.count(), 104);
+            assert.equal(deck.count, 104);
         });
 
         it('Deck initialization with 3 players', function () {
             const deck = new Deck(3);
-            assert.equal(deck.count(), 150);
+            assert.equal(deck.count, 150);
         });
 
         it('Deck initialization with 4 players', function () {
             const deck = new Deck(4);
-            assert.equal(deck.count(), 130);
+            assert.equal(deck.count, 130);
         });
 
         it('Deck initialization with 5 players', function () {
             const deck = new Deck(5);
-            assert.equal(deck.count(), 130);
+            assert.equal(deck.count, 130);
         });
 
         it('Deck initialization with 6 players', function () {
             const deck = new Deck(6);
-            assert.equal(deck.count(), 144);
+            assert.equal(deck.count, 144);
         });
 
         it('Deck initialization with 7 players', function () {
             const deck = new Deck(7);
-            assert.equal(deck.count(), 144);
+            assert.equal(deck.count, 144);
         });
 
         it('Deck initialization with illegal # of players', function () {
@@ -67,7 +67,7 @@ describe('Deck', function () {
             const deck = new Deck(3);
             deck.cards = []; // reset deck
             deck.reshuffle(['card1', 'card2', 'card3']);
-            assert.equal(3, deck.count());
+            assert.equal(3, deck.count);
         });
     });
 
@@ -81,9 +81,9 @@ describe('Deck', function () {
 
         it('Card should be taken from the deck on draw', function () {
             const deck = new Deck(3);
-            const count = deck.count();
+            const count = deck.count;
             deck._draw();
-            assert.equal(count - 1, deck.count());
+            assert.equal(count - 1, deck.count);
         });
 
         it('Cannot draw if the deck is empty', function () {

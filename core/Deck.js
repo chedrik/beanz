@@ -78,11 +78,11 @@ class Deck {
         }
     };
 
-    count() {
+    get count() {
         return this.cards.length;
     };
 
-    getCoinMap(card) {
+    static getCoinMap(card) {
         return cardMeta[card]['map'];
     };
 };
@@ -188,3 +188,7 @@ const cardMeta = {
 };
 
 module.exports = Deck;
+
+const d = new Deck(3);
+let b = Deck.getCoinMap('coffee');
+console.log('hi')
