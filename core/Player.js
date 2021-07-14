@@ -34,7 +34,6 @@ class Player {
             if (opt <= num_cards) {
                 this.coins += coin_map[opt];
                 discard_pile = this.fields[fieldId].splice(0, opt);
-                this.deck.discard_pile.push(...discard_pile);
                 break
             }
         }

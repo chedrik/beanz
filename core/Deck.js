@@ -52,8 +52,8 @@ class Deck {
         }
     };
 
-    reshuffle(newCards) {
-        this.cards.push(...newCards);
+    reshuffle() {
+        this.cards.push(...this.discardPile);
         this.shuffle();
         this.numShuffles += 1;
     };

@@ -66,7 +66,8 @@ describe('Deck', function () {
         it('Reshuffling', function () {
             const deck = new Deck(3);
             deck.cards = []; // reset deck
-            deck.reshuffle(['card1', 'card2', 'card3']);
+            deck.discardPile = ['card1', 'card2', 'card3'];
+            deck.reshuffle();
             assert.equal(3, deck.count);
         });
     });
